@@ -4,7 +4,8 @@
   "description": "A Discord bot built in Javascript, for the purposes of R6 Siege related things.",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "start": "node build/index"
   },
   "keywords": [
     "discord",
