@@ -4,7 +4,7 @@
   "description": "A Discord bot built in Javascript, for the purposes of R6 Siege related things.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc"
   },
   "keywords": [
     "discord",
@@ -16,6 +16,10 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "node-opus": "^0.3.3"
+    "node-opus": "^0.3.3",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.1"
   }
 }
