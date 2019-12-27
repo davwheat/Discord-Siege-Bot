@@ -1,0 +1,21 @@
+{
+  "name": "discord-siege-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot built in Javascript, for the purposes of R6 Siege related things.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "siege",
+    "r6siege",
+    "bot"
+  ],
+  "author": "davwheat",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "node-opus": "^0.3.3"
+  }
+}
