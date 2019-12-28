@@ -57,8 +57,6 @@ function HandleCommand(message: Message, command: string, args: string[]) {
     return;
   }
 
-  Log("Handling command", LOG_LEVEL.DEBUG);
-
   if (command === "") {
     Log("Saw a command activation but no command folllowed");
     message.reply("Hi! 👋");
@@ -66,6 +64,7 @@ function HandleCommand(message: Message, command: string, args: string[]) {
   }
 
   if (command in AliasLookupTable) {
+    Log(`Handling command: ${command}`, LOG_LEVEL.DEBUG);
     AliasLookupTable[command].function(message, args);
   } else {
     message.reply("that command doesn't exist.");

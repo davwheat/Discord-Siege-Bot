@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, RichEmbed } from "discord.js";
 import { Log, LOG_LEVEL } from "../Common";
 import { Command } from "../../@types";
 
@@ -126,30 +126,38 @@ const AllMaps: Map[] = [
   }
 ];
 
+const cmd_aliases = [
+  "map",
+  "findmap",
+  "blueprint",
+  "getblueprint",
+  "blueprints",
+  "getblueprints"
+];
+
 const command: Command = {
   name: "getmap",
-  aliases: [
-    "map",
-    "findmap",
-    "blueprint",
-    "getblueprint",
-    "blueprints",
-    "getblueprints"
-  ],
-  description: `Provides the floorplans of a Siege map via its name.
-  
-  Usage:
-  getmap <mapname>
-  
-  Available maps:
-  ${AllMaps.map(map => {
-    return map.name;
-  }).join(", ")}`,
+  aliases: cmd_aliases,
+  description: new RichEmbed()
+    .setTitle("getmap Help")
+    .setAuthor("SiegeBot")
+    .setDescription(`Provides the blueprints of a Siege map via its name.`)
+    .addField("Usage", `\`getmap <mapname>\``)
+    .addField("Aliases", cmd_aliases.join(", "))
+    .addField(
+      "Available Maps",
+      AllMaps.map(map => {
+        return map.name;
+      }).join(", ")
+    ),
 
-  function: (message, args) => {
+  function: (message, args, client) => {
     const MapName = args.join(" ").toLowerCase();
 
-    Log(`"${MapName}"`);
+    if (args.length === 0) {
+      message.reply(command.description);
+      return;
+    }
 
     let MapInfo: Map = null;
 
@@ -173,9 +181,18 @@ const command: Command = {
       return;
     }
 
-    message.reply(`${MapInfo.humanName} has ${MapInfo.floors} floors.`, {
-      file: `./images/map-blueprints/${MapInfo.name}/all.jpg`
-    });
+    message.reply(
+      new RichEmbed()
+        .setAuthor("SiegeBot")
+        .setTitle(MapInfo.humanName)
+        .addField("Number of floors", MapInfo.floors)
+        .addField(
+          "Blueprint",
+          "Click image below, then click 'Open original' to view the full floorplan."
+        )
+        .attachFile(`./images/map-blueprints/${MapInfo.name}/all.jpg`)
+        .setImage("attachment://all.jpg")
+    );
   }
 };
 

@@ -1,8 +1,8 @@
-import { Message } from "discord.js";
+import { Message, Client, RichEmbed } from "discord.js";
 
 interface Command {
   name: string;
   aliases: string[];
-  description: string;
-  function(message: Message, args: string[]);
+  description: RichEmbed;
+  function(message: Message, args: string[], client: Client);
 }
