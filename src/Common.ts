@@ -1,4 +1,6 @@
-import { minimum_log_level } from "../config";
+import { minimum_log_level, log_to_file } from "../config";
+import { appendFile } from "fs-extra";
+import { StartTimestamp } from "..";
 
 enum LOG_LEVEL {
   ERROR,
@@ -46,6 +48,13 @@ function Log(message: string, logLevel: LOG_LEVEL = LOG_LEVEL.DEBUG) {
     .padStart(4, "0")}`.padEnd(15, " ");
 
   console.log(`${prefix}${timestampString}${message}`);
+
+  if (log_to_file) {
+    appendFile(
+      `./logs/${StartTimestamp.toISOString().replace(/:/g, "-")}.log`,
+      `${prefix}${timestampString}${message}\n`
+    );
+  }
 }
 
 export { Log, LOG_LEVEL };

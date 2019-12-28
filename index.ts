@@ -1,6 +1,16 @@
 import { Client } from "discord.js";
 import { InitialiseBot, MessageReceivedHandler } from "./src/main";
 import { Log, LOG_LEVEL } from "./src/Common";
+import { log_to_file } from "./config";
+import { ensureDirSync } from "fs-extra";
+
+const StartTimestamp = new Date();
+
+if (log_to_file) {
+  ensureDirSync(`./logs`);
+  Log(`Welcome to R6Siege Bot!`, LOG_LEVEL.INFO);
+  Log(`Log to file enabled.`, LOG_LEVEL.INFO);
+}
 
 Log("Initialising bot", LOG_LEVEL.INFO);
 
@@ -13,3 +23,5 @@ function OnBotInitialised(client: Client) {
     MessageReceivedHandler(msg, client);
   });
 }
+
+export { StartTimestamp };

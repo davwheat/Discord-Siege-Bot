@@ -1,7 +1,15 @@
 import { LOG_LEVEL } from "./src/Common";
 
-const token = `Replace this with your token!`;
-const minimum_log_level = LOG_LEVEL.INFO; // Choose between DEBUG, INFO, WARNING, and ERROR. Default: LOG_LEVEL.INFO
-const command_prefix = null; // Any string, or null to only activate on mention. Default: null
+/*
 
-export { token, minimum_log_level, command_prefix };
+Documentation on each variable can be found on the project README file. 
+https://github.com/davwheat/Discord-Siege-Bot#config-options
+
+*/
+
+const token = "Replace this with your token!";
+const minimum_log_level = LOG_LEVEL.INFO;
+const log_to_file = true;
+const command_prefix = null;
+
+export { token, minimum_log_level, log_to_file, command_prefix };

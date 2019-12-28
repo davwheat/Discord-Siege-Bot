@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "tsc",
-    "start": "tsc && echo Starting bot && node dist/index"
+    "start": "tsc && node dist/index"
   },
   "keywords": [
     "discord",
@@ -17,11 +17,16 @@
   "author": "davwheat",
   "license": "MIT",
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "discord.js": "^11.5.1",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "fs-extra": "^8.1.0",
+    "libsodium-wrappers": "^0.7.6",
     "node-opus": "^0.3.3",
     "typescript": "^3.7.4"
   },
   "devDependencies": {
+    "@types/fs-extra": "^8.0.1",
     "@types/node": "^13.1.1"
   }
 }
