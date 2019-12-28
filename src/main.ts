@@ -1,7 +1,7 @@
 import Discord from "discord.js";
 import { token, command_prefix } from "../config";
 import { LOG_LEVEL, Log } from "./Common";
-import HandleCommand from "./CommandHandler";
+import { HandleCommand, BuildCommandDatabase } from "./CommandHandler";
 
 function InitialiseBot(callback: Function) {
   // @ts-ignore - user config option, so evaluation will vary
@@ -19,6 +19,8 @@ function InitialiseBot(callback: Function) {
 
   Log("Client logging in with token", LOG_LEVEL.DEBUG);
   client.login(token);
+
+  BuildCommandDatabase();
 
   return client;
 }
@@ -40,11 +42,24 @@ function MessageReceivedHandler(
     // Remove ! from mention if there
     if (mention.startsWith("!")) mention = mention.substr(1);
 
-    if (mention === client.user.id) HandleCommand(message);
+    const args = message.content
+      .substr(message.content.indexOf(">") + 1)
+      .trim() // removes excess whitespace
+      .replace(/  +/g, " ") // merges multiple spaces
+      .split(" "); // splits the command up into args
+
+    if (mention === client.user.id)
+      HandleCommand(message, args[0], args.slice(1));
   }
 
   if (message.content.startsWith(command_prefix)) {
-    HandleCommand(message);
+    const args = message.content
+      .substr(command_prefix.length)
+      .trim() // removes excess whitespace
+      .replace(/  +/g, " ") // merges multiple spaces
+      .split(" "); // splits the command up into args
+
+    HandleCommand(message, args[0], args.slice(1));
   }
 }
 
