@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "build": "npm run tsc",
-    "start": "npm run build && node dist/index"
+    "build": "tsc",
+    "start": "tsc && echo Starting bot && node dist/index"
   },
   "keywords": [
     "discord",
