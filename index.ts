@@ -1,13 +1,13 @@
 import { Client } from "discord.js";
-
 import { InitialiseBot, MessageReceivedHandler } from "./src/main";
+import { Log, LOG_LEVEL } from "./src/Common";
 
-console.log("Signing in...");
+Log("Initialising bot", LOG_LEVEL.INFO);
 
 InitialiseBot(OnBotInitialised);
 
 function OnBotInitialised(client: Client) {
-  console.log("Bot initialised and ready!");
+  Log("Bot initialised and ready!", LOG_LEVEL.INFO);
 
   client.on("message", msg => {
     MessageReceivedHandler(msg, client);
