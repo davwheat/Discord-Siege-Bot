@@ -23,7 +23,7 @@
     "fs-extra": "^8.1.0",
     "libsodium-wrappers": "^0.7.6",
     "node-opus": "^0.3.3",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.0.1",
