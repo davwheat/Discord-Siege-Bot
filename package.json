@@ -17,7 +17,7 @@
   "author": "davwheat",
   "license": "MIT",
   "dependencies": {
-    "bufferutil": "^4.0.1",
+    "bufferutil": "^4.0.3",
     "discord.js": "^11.5.1",
     "erlpack": "github:hammerandchisel/erlpack",
     "fs-extra": "^8.1.0",
